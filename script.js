@@ -2,6 +2,10 @@ var app = angular.module('MyApp', ['ui.bootstrap', 'ngMessages', 'ngRoute']);
 
 app.controller('TacoController', ['$scope', '$http', function($scope, $http) {
   $scope.greeting = "Hello World from the Taco";
+
+  $scope.taco = function() {
+    alert("something");
+  }
 }]);
 
 app.controller('BurritoController', ['$scope', '$http', function($scope, $http) {

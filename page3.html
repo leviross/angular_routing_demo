@@ -1,2 +1,32 @@
-<h2>Contact Page</h2>
-{{greeting}}
+<h2>User Page</h2>
+
+<form class="form" name="userForm" ng-submit="userForm.$valid && taco()" novalidate>
+
+  <div class="form-group" ng-class="{'has-error': userForm.userNameField.$dirty && userForm.userNameField.$invalid}">
+    <label class="control-label">Name</label>
+
+    <input type="email" class="form-control" ng-model="username" name="userNameField" ng-minlength="3" ng-model-options="{debounce: {'default': 300}}"required >
+
+    <div ng-messages="userForm.userNameField.$error"
+      ng-messages-include="my-custom-messages"
+      ng-show="userForm.userNameField.$dirty && userForm.userNameField.$invalid" >
+    </div>
+
+  </div>
+  <input type="submit" class="btn btn-primary" ng-disabled="userForm.$pristine || userForm.$invalid">
+
+</form>
+<pre>
+Username Field (Dirty): {{userForm.userNameField.$dirty}}
+Username Field (Pristine): {{userForm.userNameField.$pristine}}
+Username Field (Errors): {{userForm.userNameField.$error}}
+Form (Dirty): {{userForm.$dirty}}
+Form (valid): {{userForm.$valid}}
+</pre>
+
+<script type="text/ng-template" id="my-custom-messages">
+  <div class="help-block" ng-message="required">This field is required</div>
+  <div class="help-block" ng-message="minlength"> This field is too short!</div>
+  <div class="help-block" ng-message="email"> This is not an email!</div>
+  <div class="help-block" ng-message="number"> Not a number!</div>
+</script>
